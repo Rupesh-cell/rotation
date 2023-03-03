@@ -2,33 +2,29 @@
 <html>
 <head>
 	<title>Clickable Images</title>
+    <link rel="stylesheet" href="./style.css" type="text/css">
 	<style>
-		img {
-			width: 200px;
-			height: 200px;
-			margin: 10px;
-			cursor: pointer;
-		}
-
-        .spin{
-            transform : rotate(360deg);
-            transition :transform 1s;
-        }
+		
 	</style>
 </head>
 <body onload="displayImages()">
-	<div id="image-container">
-		<img src="" alt="image 1" id="img1" class="image">
-		<img src="" alt="image 2" id="img2" class="image">
-		<img src="" alt="image 3" id="img3" class="image">
-	</div>
+	
+		<img src="" alt="image 1" id="img1" class="image" onclick="change1()">
+		<img src="" alt="image 2" id="img2" class="image" onclick="change2()">
+		<img src="" alt="image 3" id="img3" class="image"onclick="change3()">
+	
     
     <button id="buttonn" onclick="displayImages()">Manual Refresh</button>
     <div id="timer"></div>
     <div id="counter"> Counter</div>
-    <input id="refresh-timeout-input" type="number" value="2500">
+    <label for="refresh-time">Refresh time (in milliseconds):</label>
+    <input type="number" id="refresh-time" min="500" max="10000" value="5000" onchange="updateRefreshTime()">
     
 
-	<script src="./script.js"></script>
+
+    
+
+	
 </body>
+<script src="./script.js"></script>
 </html>

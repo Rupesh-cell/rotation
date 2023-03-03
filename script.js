@@ -1,104 +1,74 @@
 const images = [
-	['cat1.jpg', 'cat2.jpg', 'cat3.jpg'],
-	['dog1.jpg', 'dog2.jpg', 'dog3.jpg'],
-	['star1.jpg', 'star2.jpg', 'star3.jpg']
+  ["cat1.jpg", "cat2.jpg", "cat3.jpg"],
+  ["dog1.jpg", "dog2.jpg", "dog3.jpg"],
+  ["star1.jpg", "star2.jpg", "star3.jpg"],
 ];
 
-let counter = 0; 
-let refreshTimer = null; 
+let counter = 0;
+let refreshTimer = null;
 
 function getRandomImage() {
-	const theme = Math.floor(Math.random() * images.length);
-	const index = Math.floor(Math.random() * images[theme].length);
-	return images[theme][index]; 
+  const theme = Math.floor(Math.random() * images.length);
+  const index = Math.floor(Math.random() * images[theme].length);
+  return images[theme][index];
 }
 
 function displayImages() {
-	const img1 = document.getElementById('img1');
-	const img2 = document.getElementById('img2');
-	const img3 = document.getElementById('img3');
+  const img1 = document.getElementById("img1");
+  const img2 = document.getElementById("img2");
+  const img3 = document.getElementById("img3");
 
-	img1.src = getRandomImage();
-	img2.src = getRandomImage();
-	img3.src = getRandomImage();
-    remainingTime = 5000;
-    updateImageChangeCount()
-    
-    
+  img1.src = getRandomImage();
+  img2.src = getRandomImage();
+  img3.src = getRandomImage();
+  remainingTime = parseInt(refreshTimeInput.value);
+  updateImageChangeCount();
 }
-function do_animation( event ) {
-    target = event.srcElement;
-    target.classList.remove('spin');
-    setTimeout( () => {target.classList.add('spin');}, 0 );
+function do_animation(event) {
+  target = event.srcElement;
+  target.classList.remove("spin");
+  setTimeout(() => {
+    target.classList.add("spin");
+  }, 0);
 }
 
+const img1 = document.getElementById("img1");
+const img2 = document.getElementById("img2");
+const img3 = document.getElementById("img3");
 
-// function handleClick(event) {
-// 	const img = event.target;
+img1.addEventListener("click", do_animation);
+img2.addEventListener("click", do_animation);
+img3.addEventListener("click", do_animation);
 
-// 	// play transition animation
-// 	img.style.transition = 'transform 1s';
-// 	img.style.transform = 'rotate(360deg)';
+let remainingTime;
+console.log(remainingTime);
+let refreshTimeInput = document.getElementById("refresh-time");
+remainingTime = parseInt(refreshTimeInput.value);
+console.log(remainingTime);
 
-// 	// set a timeout to change the image after the animation completes
-// 	setTimeout(() => {
-// 		img.src = getRandomImage();
-//         img.style.transition = 'transform 1s';
-// 	    img.style.transform = 'rotate(360deg)';
-        
-// 	}, 1000);
+function countdownTimer() {
+  setInterval(() => {
+    const timerElement = document.getElementById("timer");
+    remainingTime -= 100;
+    timerElement.innerText = `${remainingTime / 1000}s`;
 
-// 	// reset the refresh timer
-// 	clearTimeout(refreshTimer);
-// 	refreshTimer = setTimeout(displayImages, 5000);
-
-	// increase the counter
-// 	counter++;
-// 	console.log(`Image ${img.alt} clicked ${counter} time(s)`);
-// }
-
-const img1 = document.getElementById('img1');
-const img2 = document.getElementById('img2');
-const img3 = document.getElementById('img3');
-
-img1.addEventListener('click', do_animation);
-img2.addEventListener('click', do_animation);
-img3.addEventListener('click', do_animation);
-
-
-
-let remainingTime = 5000; 
-
-function countdownTimer() { 
-    setInterval(() => {
-  const timerElement = document.getElementById("timer");
-  remainingTime -= 100;
-  timerElement.innerText = `${remainingTime / 1000}s`;
-
-  if (remainingTime <= 0) {
-    clearInterval(remainingTime);
-    remainingTime = 5000;
-    
-
-
-    displayImages();
-    
-    
-  } else if (remainingTime <= 2500) {
-    timerElement.style.backgroundColor = "red";
-    timerElement.style.color = "white";
-  } else if (remainingTime <= 4000) {
-    timerElement.style.backgroundColor = "yellow";
-    timerElement.style.color = "black";
-  } else {
-    timerElement.style.backgroundColor = "green";
-    timerElement.style.color = "white";
-  }
-}, 100);
+    if (remainingTime <= 0) {
+      clearInterval(remainingTime);
+      remainingTime = parseInt(refreshTimeInput.value);
+      displayImages();
+    } else if (remainingTime <= 2500) {
+      timerElement.style.backgroundColor = "red";
+      timerElement.style.color = "white";
+    } else if (remainingTime <= 4000) {
+      timerElement.style.backgroundColor = "yellow";
+      timerElement.style.color = "black";
+    } else {
+      timerElement.style.backgroundColor = "green";
+      timerElement.style.color = "white";
+    }
+  }, 100);
 }
-countdownTimer()
-
-
+countdownTimer();
 
 let imageChangeCount = 0;
 
@@ -108,13 +78,12 @@ function updateImageChangeCount() {
   counterElement.innerText = `Image Change Count: ${imageChangeCount}`;
 }
 
-
 const imageElements = document.querySelectorAll(".image");
 imageElements.forEach((image) => {
   image.addEventListener("click", (event) => {
     do_animation(event);
     updateImageChangeCount();
-    remainingTime = 5000;
+    remainingTime = parseInt(refreshTimeInput.value);
   });
 });
 
@@ -123,10 +92,32 @@ buttonchange.forEach((button) => {
   image.addEventListener("click", (event) => {
     do_animation(event);
     updateImageChangeCount();
-    remainingTime = 5000;
+    remainingTime = parseInt(refreshTimeInput.value);
   });
 });
 
+let currentImageIndex = 0;
 
+function changeImage() {
+  const myImage = document.getElementsByClassName(".Image");
+  currentImageIndex = (currentImageIndex + 1) % images.length;
+  myImage.src = images[currentImageIndex];
+}
 
-
+function change1() {
+    const img1 = document.getElementById("img1");
+  
+  img1.src = getRandomImage();
+  
+    
+}
+function change2() {
+    const img2 = document.getElementById("img2");
+  
+  img2.src = getRandomImage();
+}
+function change3() {
+    const img3 = document.getElementById("img3");
+  
+    img3.src = getRandomImage();
+}

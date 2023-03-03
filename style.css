@@ -1,0 +1,44 @@
+#image-container {
+    margin:auto;
+    width: 100%;
+    padding:10px 10px;
+}
+img {
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.spin{
+    transform : rotate(360deg);
+    transition :transform 1s;
+}
+
+button{
+    background:green;
+    width: 200px;
+    height: 40px;
+    border-radius:4px;
+    border:none;
+    color:white;
+    margin-bottom: 10px;
+    margin:auto;
+   margin-top: 40px;
+}
+#timer{
+width:200px;
+}
+
+label,input{
+    padding: 10px;
+    
+}
+#counter{
+    float: right;
+}
+body{
+    width: 1100px;
+    margin: auto;
+}
